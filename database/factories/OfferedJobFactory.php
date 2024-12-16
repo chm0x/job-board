@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+use App\Models\OfferedJob;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OfferedJob>
  */
@@ -17,7 +18,12 @@ class OfferedJobFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->title,
+            'description' => fake()->paragraphs(3, true),
+            'salary' => fake()->numberBetween(5_000, 150_000),
+            'location' => fake()->city,
+            'category' => fake()->randomElement(OfferedJob::$category),
+            'experience' => fake()->randomElement(OfferedJob::$experience)
         ];
     }
 }
