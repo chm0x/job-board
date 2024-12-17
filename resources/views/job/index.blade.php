@@ -1,12 +1,13 @@
 <x-layout>
     @forelse($jobs as $job)
-        <h2>{{ $job->title }}</h2>
-        <p>{{ $job->description }}</p>
-        <p>{{ $job->salary }}</p>
-        <p>Location: {{ $job->location }}</p>
-        <p>Category: {{ $job->category }}</p>
-        <p>Experiencie: {{ $job->experience }}</p>
-        <hr/>
+       <x-card class="mb-4">
+            <h2>{{ $job->title  }}</h2>
+            <p>{{ $job->description }}</p>
+            <p>{{ $job->salary }}</p>
+            <p>Location: {{ $job->location }}</p>
+            <p>Category: {{ $job->category }}</p>
+            <p>Experiencie: {{ $job->experience }}</p>
+       </x-card>
     @empty
         <p>There is not jobs</p>
     @endforelse
