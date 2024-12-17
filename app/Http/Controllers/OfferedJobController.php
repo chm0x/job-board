@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\OfferedJob;
+
 class OfferedJobController extends Controller
 {
     /**
@@ -11,7 +13,7 @@ class OfferedJobController extends Controller
      */
     public function index()
     {
-        //
+        return view('job.index', ['jobs' => OfferedJob::simplePaginate(5)]);
     }
 
     /**
