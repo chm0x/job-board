@@ -13,4 +13,4 @@ Route::get('', fn() => to_route('jobs.index'));
 
 # RESOURCE: OFFERED JOBS
 Route::resource('jobs', OfferedJobController::class)
-    ->only(['index']);
+    ->only(['index', 'show']);
