@@ -8,5 +8,9 @@ use App\Http\Controllers\OfferedJobController;
 //     return view('welcome');
 // });
 
+# MAIN
+Route::get('', fn() => to_route('jobs.index'));
+
+# RESOURCE: OFFERED JOBS
 Route::resource('jobs', OfferedJobController::class)
     ->only(['index']);
