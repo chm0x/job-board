@@ -18,7 +18,7 @@ class OfferedJobFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title,
+            'title' => fake()->jobTitle,
             'description' => fake()->paragraphs(3, true),
             'salary' => fake()->numberBetween(5_000, 150_000),
             'location' => fake()->city,
