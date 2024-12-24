@@ -13,7 +13,14 @@ class OfferedJobController extends Controller
      */
     public function index()
     {
-        return view('job.index', ['jobs' => OfferedJob::simplePaginate(5)]);
+        $jobs = OfferedJob::query();
+        $jobs->when(request('search'), function ($query) {
+            $query->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('description', 'like', '%' . request('search') . '%');
+
+        });
+        // return view('job.index', ['jobs' => OfferedJob::simplePaginate(5)]);
+        return view('job.index', ['jobs' => $jobs->simplePaginate(5)]);
     }
 
     /**
