@@ -15,9 +15,16 @@ class OfferedJobController extends Controller
     {
         $jobs = OfferedJob::query();
         $jobs->when(request('search'), function ($query) {
-            $query->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('description', 'like', '%' . request('search') . '%');
-
+            $query->where(function($query){
+                $query->where('title', 'like', '%' . request('search') . '%')
+                    ->orWhere('description', 'like', '%' . request('search') . '%');
+            });
+        })
+        ->when(request('min_salary'), function($query){
+            $query->where('salary', '>=', (int)request('min_salary'));
+        })
+        ->when(request('max_salary'), function($query){
+            $query->where('salary', '<=', (int)request('max_salary'));
         });
         // return view('job.index', ['jobs' => OfferedJob::simplePaginate(5)]);
         return view('job.index', ['jobs' => $jobs->simplePaginate(5)]);
