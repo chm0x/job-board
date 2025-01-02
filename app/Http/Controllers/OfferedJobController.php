@@ -25,7 +25,12 @@ class OfferedJobController extends Controller
         })
         ->when(request('max_salary'), function($query){
             $query->where('salary', '<=', (int)request('max_salary'));
+        })
+        ->when(request('experience'), function($query){
+            $query->where('experience', request('experience'));
         });
+
+
         // return view('job.index', ['jobs' => OfferedJob::simplePaginate(5)]);
         return view('job.index', ['jobs' => $jobs->simplePaginate(5)]);
     }

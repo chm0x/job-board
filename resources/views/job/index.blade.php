@@ -6,13 +6,13 @@
         <form action="{{ route('jobs.index') }}" method="GET">
             <div class="mb-4 grid grid-cols-2 gap-4">
                 <div>
-                    <div class="mb-1 font-semibold">
+                    <div class="mb-1 font-semibold dark:text-black">
                         Search
                     </div>
                     <x-text-input name="search" value="{{ request('search') }}" placeholder="Search for any text" />
                 </div>
                 <div>
-                    <div class="mb-1 font-semibold">
+                    <div class="mb-1 font-semibold dark:text-black">
                         Salary
                     </div>
                     <div class="flex space-x-2">
@@ -20,12 +20,49 @@
                         <x-text-input name="max_salary" value="{{ request('max_salary') }}" placeholder="To" />
                     </div>
                 </div>
-                <div>3</div>
+                <div>
+                    <div class="mb-1 font-semibold dark:text-black">Experience</div>
+
+                    <label for="experience" class="mb-1 flex items-center">
+                        <input 
+                            type="radio" 
+                            name="experience" 
+                            value="" 
+                            @checked(!request('experience')) 
+                        />
+                        <span class="ml-2 dark:text-black">All</span>
+                    </label>
+                    @foreach(\App\Models\OfferedJob::$experience as $experience)
+                        <label for="experience_{{ $experience }}" class="mb-1 flex items-center">
+                            <input 
+                                type="radio" 
+                                name="experience" 
+                                id="experience_{{ $experience }}" 
+                                value="{{ $experience }}" 
+                                @checked( $experience === request('experience')) 
+                            />
+                            <span class="ml-2 dark:text-black"> {{ Str::ucfirst($experience) }} </span>
+                        </label>
+                    @endforeach
+                    {{-- <label for="experience" class="mb-1 flex items-center">
+                        <input type="radio" name="experience" value="entry" />
+                        <span class="ml-2 dark:text-black">Entry</span>
+                    </label>
+                    <label for="experience" class="mb-1 flex items-center">
+                        <input type="radio" name="experience" value="intermediate" />
+                        <span class="ml-2 dark:text-black">Intermediate</span>
+                    </label>
+                    <label for="experience" class="mb-1 flex items-center">
+                        <input type="radio" name="experience" value="senior" />
+                        <span class="ml-2 dark:text-black">Senior</span>
+                    </label> --}}
+                </div>
                 <div>4</div>
-                <button class="w-full">
-                    Filter
-                </button>
             </div>
+
+            <button class="w-full dark:text-black">
+                Filter
+            </button>
         </form>
     </x-card>
     @forelse($jobs as $job)
