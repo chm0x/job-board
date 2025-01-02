@@ -6,12 +6,14 @@
         <form action="{{ route('jobs.index') }}" method="GET">
             <div class="mb-4 grid grid-cols-2 gap-4">
                 <div>
+                    {{-- Filter Search --}}
                     <div class="mb-1 font-semibold dark:text-black">
                         Search
                     </div>
                     <x-text-input name="search" value="{{ request('search') }}" placeholder="Search for any text" />
                 </div>
                 <div>
+                    {{-- Filter Salary --}}
                     <div class="mb-1 font-semibold dark:text-black">
                         Salary
                     </div>
@@ -21,43 +23,21 @@
                     </div>
                 </div>
                 <div>
+                    {{-- Filter Experience --}}
                     <div class="mb-1 font-semibold dark:text-black">Experience</div>
-
-                    <label for="experience" class="mb-1 flex items-center">
-                        <input 
-                            type="radio" 
-                            name="experience" 
-                            value="" 
-                            @checked(!request('experience')) 
-                        />
-                        <span class="ml-2 dark:text-black">All</span>
-                    </label>
-                    @foreach(\App\Models\OfferedJob::$experience as $experience)
-                        <label for="experience_{{ $experience }}" class="mb-1 flex items-center">
-                            <input 
-                                type="radio" 
-                                name="experience" 
-                                id="experience_{{ $experience }}" 
-                                value="{{ $experience }}" 
-                                @checked( $experience === request('experience')) 
-                            />
-                            <span class="ml-2 dark:text-black"> {{ Str::ucfirst($experience) }} </span>
-                        </label>
-                    @endforeach
-                    {{-- <label for="experience" class="mb-1 flex items-center">
-                        <input type="radio" name="experience" value="entry" />
-                        <span class="ml-2 dark:text-black">Entry</span>
-                    </label>
-                    <label for="experience" class="mb-1 flex items-center">
-                        <input type="radio" name="experience" value="intermediate" />
-                        <span class="ml-2 dark:text-black">Intermediate</span>
-                    </label>
-                    <label for="experience" class="mb-1 flex items-center">
-                        <input type="radio" name="experience" value="senior" />
-                        <span class="ml-2 dark:text-black">Senior</span>
-                    </label> --}}
+                    <x-radio-group 
+                        name="experience" 
+                        :options="\App\Models\OfferedJob::$experience" 
+                    />
                 </div>
-                <div>4</div>
+                <div>
+                    {{-- Filter Category --}}
+                    <div class="mb-1 font-semibold dark:text-black">Category</div>
+                    <x-radio-group 
+                        name="category" 
+                        :options="\App\Models\OfferedJob::$category" 
+                    />
+                </div>
             </div>
 
             <button class="w-full dark:text-black">

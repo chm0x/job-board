@@ -28,6 +28,8 @@ class OfferedJobController extends Controller
         })
         ->when(request('experience'), function($query){
             $query->where('experience', request('experience'));
+        })->when(request('category'), function($query){
+            $query->where('category', request('category'));
         });
 
 
