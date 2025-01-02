@@ -27,7 +27,10 @@
                     <div class="mb-1 font-semibold dark:text-black">Experience</div>
                     <x-radio-group 
                         name="experience" 
-                        :options="\App\Models\OfferedJob::$experience" 
+                        :options="array_combine( 
+                            array_map('ucfirst', \App\Models\OfferedJob::$experience),
+                            \App\Models\OfferedJob::$experience
+                        )" 
                     />
                 </div>
                 <div>

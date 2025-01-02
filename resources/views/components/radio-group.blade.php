@@ -8,7 +8,7 @@
         <span class="ml-2 dark:text-black">All</span>
     </label>
 
-    @foreach ($options as $option)
+    @foreach ($optionsWithLabels as $label => $option)
         <label for="{{ $name }}" class="mb-1 flex items-center">
             <input 
                 type="radio" 
