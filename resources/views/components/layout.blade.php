@@ -15,7 +15,17 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
     </head>
-    <body class="font-sans antialiased mx-auto mt-10 max-w-2xl bg-slate-200 text-slate-700 dark:bg-black dark:text-white/50">
+    <body
+        class="font-sans
+            antialiased
+            mx-auto
+            mt-10
+            max-w-2xl
+            bg-gradient-to-r from-green-500 from-20% via-blue-300 via-30% to-red-400 to-90%
+            text-slate-700
+            dark:bg-black
+            dark:text-white/50"
+    >
         {{ $slot }}
     </body>
 </html>
