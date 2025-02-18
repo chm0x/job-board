@@ -57,9 +57,9 @@
                 </div>
             </div>
 
-            <button class="w-full dark:text-black">
+            <x-button class="w-full dark:text-black">
                 Filter
-            </button>
+            </x-button>
         </form>
     </x-card>
     @forelse($jobs as $job)
