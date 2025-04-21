@@ -2,8 +2,8 @@
     <x-breadcrumbs class="mb-4" :links="[
         'Jobs' => route('jobs.index'),
     ]" />
-    <x-card class="mb-4 text-sm">
-        <form id="filtering-form" action="{{ route('jobs.index') }}" method="GET">
+    <x-card class="mb-4 text-sm" x-data="" >
+        <form x-ref="filters" id="filtering-form" action="{{ route('jobs.index') }}" method="GET">
             <div class="mb-4 grid grid-cols-2 gap-4">
                 <div>
                     {{-- Filter Search --}}
@@ -14,7 +14,7 @@
                         name="search" 
                         value="{{ request('search') }}" 
                         placeholder="Search for any text" 
-                        form-id="filtering-form"
+                        form-ref="filters"
                     />
                 </div>
                 <div>
@@ -27,12 +27,14 @@
                             name="min_salary" 
                             value="{{ request('min_salary') }}" 
                             placeholder="From" 
-                            form-id="filtering-form"/>
+                            form-ref="filters"
+                        />
                         <x-text-input 
                             name="max_salary" 
                             value="{{ request('max_salary') }}" 
                             placeholder="To" 
-                            form-id="filtering-form"/>
+                            form-ref="filters"
+                        />
                     </div>
                 </div>
                 <div>
