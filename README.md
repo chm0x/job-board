@@ -12,3 +12,8 @@ Install AlpineJS
 ```
 > npm install alpinejs
 ```
+
+Borrar la DB
+```
+> php artisan db:wipe
+```

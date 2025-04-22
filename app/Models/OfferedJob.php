@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class OfferedJob extends Model
 {
     /** @use HasFactory<\Database\Factories\OfferedJobFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public static array $experience = ['entry', 'intermediate', 'senior'];
 
@@ -20,6 +22,11 @@ class OfferedJob extends Model
         'Sales', 
         'Marketing'
     ];
+
+    public function employer(): BelongsTo
+    {
+        return $this->belongsTo(Employer::class);
+    }
 
     public function scopeFilter(Builder | QueryBuilder $query, array $filters): Builder | QueryBuilder
     {
