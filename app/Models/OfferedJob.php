@@ -30,10 +30,17 @@ class OfferedJob extends Model
 
     public function scopeFilter(Builder | QueryBuilder $query, array $filters): Builder | QueryBuilder
     {
+        /**
+         * La sentencia 'use' se utiliza para acceder la 
+         * variable AFUERA del SCOPE. 
+         */
         return $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->where(function($query) use($search) {
                 $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas('employer', function($query) use ( $search ){
+                        $query->where('company_name', 'like', '%'. $search .'%');
+                    });
             });
         })
         ->when($filters['min_salary'] ?? null, function($query, $minSalary){

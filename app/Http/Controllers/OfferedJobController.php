@@ -23,7 +23,9 @@ class OfferedJobController extends Controller
                     );
 
         return view('job.index', [ 
-            'jobs' => OfferedJob::filter($filters)->simplePaginate(5) 
+            'jobs' => OfferedJob::with('employer')
+                        ->filter($filters)
+                        ->simplePaginate(5) 
         ]);
     }
 
@@ -48,7 +50,9 @@ class OfferedJobController extends Controller
      */
     public function show(OfferedJob $job)
     {
-        return view('job.show', compact('job'));
+        return view('job.show', [
+            'job' => $job->load('employer')
+        ]);
     }
 
     /**
