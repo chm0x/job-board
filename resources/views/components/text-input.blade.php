@@ -19,7 +19,7 @@
     @endif
     <input
         x-ref="input-{{ $name }}"
-        type="text" 
+        type="{{ $type }}" 
         placeholder = "{{ $placeholder }}"
         value="{{ $value }}"
         name="{{ $name }}" 
