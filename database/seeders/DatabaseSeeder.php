@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        User::factory()->create([
+            'name' => 'John',
+            'email' => 'john@halo.com',
+            
+        ]);
+
         User::factory(300)->create();
 
         $users = User::all()->shuffle();

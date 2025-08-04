@@ -27,6 +27,7 @@
             dark:bg-black
             dark:text-white/50"
     >
+        {{ auth()->user()->name ?? 'Guest' }}
         {{ $slot }}
     </body>
 </html>

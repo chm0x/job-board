@@ -24,7 +24,7 @@
                 <div class="">
                     <div class="flex items-center space-x-2">
                         <input type="checkbox" name="remember" class="rounded-sm border border-slate-400" />
-                        <label for="remember">Remember me</label>
+                        <label for="remember" class="dark:text-black">Remember me</label>
                     </div>
                 </div>
 
